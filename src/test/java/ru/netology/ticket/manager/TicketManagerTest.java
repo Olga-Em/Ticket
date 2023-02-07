@@ -18,7 +18,25 @@ public class TicketManagerTest {
     Ticket ticket6 = new Ticket(6, 5000, "MSK", "NSK");
     Ticket ticket7 = new Ticket(7, 800, "NSK", "IRK");
     Ticket ticket8 = new Ticket(8, 9000, "NSK", "IRK");
+    Ticket ticket9 = new Ticket(9, 5000, "MSK", "NSK");
 
+    @Test
+    public void testSamePriceTickets() {
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+        manager.add(ticket6);
+        manager.add(ticket7);
+        manager.add(ticket8);
+        manager.add(ticket9);
+
+        Ticket[] expected = {ticket6, ticket9};
+        Ticket[] actual = manager.findAll("MSK", "NSK");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
     @Test
     public void testSortTickets() {
         manager.add(ticket1);
